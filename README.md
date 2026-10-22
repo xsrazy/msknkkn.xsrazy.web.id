@@ -2,53 +2,53 @@
 
 **Live: https://msknkkn.xsrazy.web.id**
 
-Masakan Kekinian adalah website pencarian resep masakan. Pengunjung bisa mencari resep berdasarkan kata kunci, menelusuri resep berdasarkan jenis makanan, melihat daftar makanan populer, lalu membuka detail resep lengkap dengan bahan dan langkah memasaknya. Semua data resep berasal dari Spoonacular API dan ditampilkan dalam Bahasa Inggris sesuai data aslinya, sementara situs ini ditujukan terutama untuk pengguna Indonesia yang mencari ide masakan.
+Masakan Kekinian ("Trending Recipes") is a recipe discovery website. Visitors can search for recipes by keyword, browse recipes by type of meal, see a list of popular dishes, and open full recipe details with ingredients and cooking steps. All recipe data comes from the Spoonacular API and is displayed in English as provided by the source, while the site itself is aimed primarily at Indonesian users looking for cooking ideas.
 
-> Repo ini adalah repo dokumentasi (showcase). Source code aplikasi bersifat private dan tidak disertakan di sini.
+> This is a documentation (showcase) repository. The application's source code is private and is not included here.
 
-## Kenapa Web Ini Dibuat
+## Why This Website Was Made
 
-Cari ide masakan itu sering jadi masalah sehari-hari: bahan di dapur ada, tapi idenya mentok. Website resep yang sudah ada umumnya berat, penuh iklan, atau harus daftar dulu sebelum bisa membaca resep sampai habis. Masakan Kekinian dibuat sebagai alternatif yang ringan dan langsung bisa dipakai: buka situsnya, cari atau pilih jenis makanan, dan resep langsung tampil tanpa akun dan tanpa biaya.
+Finding cooking ideas is a common everyday problem: the ingredients are in the kitchen, but the ideas run out. Existing recipe websites are often heavy, full of ads, or require signing up before a recipe can be read in full. Masakan Kekinian was made as a lightweight alternative that works right away: open the site, search or pick a type of meal, and the recipe appears, with no account and no cost.
 
-Web ini juga jadi sarana praktik membangun aplikasi web modern berbasis React yang mengambil data dari API publik secara langsung, lengkap sampai tahap deployment dan domain sendiri.
+The website is also a practice project for building a modern React web app that pulls data directly from a public API, all the way through deployment on its own domain.
 
-## Tujuan
+## Purpose
 
-- Membantu pengguna Indonesia menemukan ide masakan sehari-hari maupun untuk acara khusus dengan cepat.
-- Menyediakan pencarian resep yang sederhana: cukup kata kunci atau jenis makanan, tanpa perlu registrasi.
-- Menampilkan resep populer sebagai inspirasi instan bagi pengunjung yang belum tahu mau masak apa.
-- Menjadi bagian dari portofolio web pribadi yang dikelola dan di-deploy secara mandiri.
+- Help Indonesian users quickly find ideas for everyday meals as well as dishes for special occasions.
+- Provide simple recipe search: just a keyword or a type of meal, no registration needed.
+- Show popular recipes as instant inspiration for visitors who do not yet know what to cook.
+- Be part of a personal web portfolio that is managed and deployed independently.
 
-## Fitur
+## Features
 
-- **Halaman utama** dengan hero bertuliskan "Your Best Cooking Companion", pemilih jenis makanan "Find Your Type of Meal", dan daftar "Popular Food Recipe".
-- **Pencarian resep** berdasarkan kata kunci, hasilnya diambil langsung dari Spoonacular API.
-- **Telusur berdasarkan jenis makanan**, misalnya appetizer, beverage, bread, breakfast, brunch, dessert, dinner, drink, salad, sauce, snack, dan soup, masing-masing dengan ikon kategorinya sendiri.
-- **Makanan populer**: daftar resep yang sedang populer, tampil otomatis di halaman utama sebagai inspirasi.
-- **Detail resep**: bahan-bahan dan langkah memasak untuk setiap resep yang dipilih.
-- **Kartu resep (FoodCard)** yang konsisten dipakai di semua daftar, menampilkan gambar dan nama makanan.
-- **Navbar dan sidebar** untuk navigasi antarhalaman, plus footer sebagai penutup halaman.
-- **Indikator loading** selama data resep diambil dari API, supaya pengunjung tahu halaman sedang bekerja.
+- **Homepage** with a hero reading "Your Best Cooking Companion", a meal type picker "Find Your Type of Meal", and a "Popular Food Recipe" list.
+- **Recipe search** by keyword, with results fetched live from the Spoonacular API.
+- **Browsing by type of meal**, such as appetizer, beverage, bread, breakfast, brunch, dessert, dinner, drink, salad, sauce, snack, and soup, each with its own category icon.
+- **Popular dishes**: a list of trending recipes shown automatically on the homepage as inspiration.
+- **Recipe details**: ingredients and cooking steps for every selected recipe.
+- **Recipe cards (FoodCard)** used consistently across all lists, showing the dish image and name.
+- **Navbar and sidebar** for navigating between pages, plus a footer closing the page.
+- **Loading indicators** while recipe data is fetched from the API, so visitors know the page is working.
 
 ## Frontend
 
-- Dibangun sebagai aplikasi satu halaman (SPA) berbasis **React 18** dengan **Create React App** (react-scripts 5).
-- Routing antarhalaman memakai **React Router DOM 6**; pengambilan dan penyimpanan cache data dari API dibantu **React Query 3**.
-- Styling memakai **Tailwind CSS** ditambah CSS per komponen.
-- Komponen utama ada di `src/components/`: NavBar, HeroSection, MealType, PopularFoods, FoodCard, SideBar, dan Footer.
-- Logika pengambilan data dipisah ke `src/hooks/`: `useFetchPopularFood` untuk makanan populer, `useFetchRecipe` untuk detail resep, dan `useSearch` untuk pencarian.
+- Built as a single-page application (SPA) with **React 18** and **Create React App** (react-scripts 5).
+- Page routing uses **React Router DOM 6**; API data fetching and caching is handled by **React Query 3**.
+- Styling uses **Tailwind CSS** plus per-component CSS.
+- The main components live in `src/components/`: NavBar, HeroSection, MealType, PopularFoods, FoodCard, SideBar, and Footer.
+- Data fetching logic is separated into `src/hooks/`: `useFetchPopularFood` for popular dishes, `useFetchRecipe` for recipe details, and `useSearch` for search.
 
-## Backend / Cara Kerja
+## Backend / How It Works
 
-- Aplikasi ini tidak memiliki backend sendiri: tidak ada server, tidak ada serverless function, tidak ada database, dan tidak ada sistem akun pengguna.
-- Browser pengunjung memanggil **Spoonacular API** secara langsung dari sisi client setiap kali halaman dibuka, dicari, atau detail resep diminta. Data resep, gambar makanan, dan hasil pencarian semuanya disediakan oleh API eksternal tersebut pada saat itu juga.
-- Karena datanya live dari API, koleksi resep yang tampil selalu mengikuti katalog Spoonacular dan tidak disimpan secara lokal di situs ini.
-- Situs di-deploy di **Vercel**; setiap perubahan pada source code yang masuk ke branch utama langsung terdeploy ke produksi dan bisa diakses lewat domain msknkkn.xsrazy.web.id.
+- The application has no backend of its own: no server, no serverless functions, no database, and no user account system.
+- The visitor's browser calls the **Spoonacular API** directly from the client side whenever a page is opened, a search is run, or a recipe detail is requested. Recipe data, food images, and search results are all provided by that external API at that moment.
+- Because the data is live from the API, the recipe collection shown always follows the Spoonacular catalog and is not stored locally on this site.
+- The site is deployed on **Vercel**; every change to the source code that lands on the main branch is deployed straight to production and is accessible through the domain msknkkn.xsrazy.web.id.
 
-## Catatan
+## Notes
 
-- Repo ini berisi dokumentasi saja. Source code aplikasi Masakan Kekinian disimpan di repo private terpisah.
-- Nama "msknkkn" adalah singkatan santai dari "Masakan Kekinian".
+- This repository contains documentation only. The Masakan Kekinian source code is kept in a separate private repository.
+- The name "msknkkn" is a casual abbreviation of "Masakan Kekinian".
 
 ## 🌐 Socials
 [![Behance](https://img.shields.io/badge/Behance-1769ff?logo=behance&logoColor=white)](https://behance.net/xsrazy) [![Discord](https://img.shields.io/badge/Discord-%237289DA.svg?logo=discord&logoColor=white)](https://discord.gg/xsrazy) [![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?logo=Facebook&logoColor=white)](https://facebook.com/xsrazy) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/xsrazy) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/xsrazy) [![Medium](https://img.shields.io/badge/Medium-12100E?logo=medium&logoColor=white)](https://medium.com/@xsrazy) [![Pinterest](https://img.shields.io/badge/Pinterest-%23E60023.svg?logo=Pinterest&logoColor=white)](https://pinterest.com/xsrazy) [![Quora](https://img.shields.io/badge/Quora-%23B92B27.svg?logo=Quora&logoColor=white)](https://quora.com/profile/xsrazy) [![Reddit](https://img.shields.io/badge/Reddit-%23FF4500.svg?logo=Reddit&logoColor=white)](https://reddit.com/user/xsrazy) [![Stack Overflow](https://img.shields.io/badge/-Stackoverflow-FE7A16?logo=stack-overflow&logoColor=white)](https://stackoverflow.com/users/31065073) [![Twitch](https://img.shields.io/badge/Twitch-%239146FF.svg?logo=Twitch&logoColor=white)](https://twitch.tv/xsrazy) [![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?logo=Twitter&logoColor=white)](https://twitter.com/xsrazy) [![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?logo=YouTube&logoColor=white)](https://youtube.com/c/xsrazy)
